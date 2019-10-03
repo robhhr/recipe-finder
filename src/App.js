@@ -8,22 +8,35 @@ const App = () => {
   const API = 'd0dcff82abb54485948d11c436e31347';
 
   const[recipes, setRecipes] = useState([]);
+  const [query, queryState] = useState('cheese');
 
   useEffect(() => {
     getRecipes();
-  }, []);
+  }, [query]);
 
   const getRecipes = async () => {
-    const foodFetch = await fetch(`https://api.spoonacular.com/recipes/search?query=cheese&number=2&apiKey=${API}`);
+    const foodFetch = await fetch(`https://api.spoonacular.com/recipes/search?query=${query}&number=2&apiKey=${API}`);
     const data = await foodFetch.json();
     setRecipes(data.results);
     console.log(data.results);
   }
 
+  const [search, setSearch] = useState('');
+
+  const searchInput = event => {
+    setSearch(event.target.value);
+  }
+
+  const getSearch = event => {
+    event.preventDefault();
+    queryState(search);
+    setSearch('');
+  }
+
   return (
     <div className="container">
-      <form className="search-form">
-        <input className="search-bar" type="text" />
+      <form className="search-form" onSubmit={getSearch}>
+        <input className="search-bar" type="text" value={search} onChange={searchInput} />
         <button
         className="search-button"
         type="submit"
