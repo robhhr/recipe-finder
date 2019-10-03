@@ -14,7 +14,7 @@ const App = () => {
   }, []);
 
   const getRecipes = async () => {
-    const foodFetch = await fetch(`https://api.spoonacular.com/recipes/search?apiKey=${API}`);
+    const foodFetch = await fetch(`https://api.spoonacular.com/recipes/search?query=cheese&number=2&apiKey=${API}`);
     const data = await foodFetch.json();
     setRecipes(data.results);
     console.log(data.results);
@@ -33,6 +33,7 @@ const App = () => {
       </form>
       {recipes.map(recipe => (
         <Recipe
+          key={recipe.title}
           title={recipe.title}
           servings={recipe.servings}
           image={`https://spoonacular.com/recipeImages/${recipe.id}-312x150.jpg`}
