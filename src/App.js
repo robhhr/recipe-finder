@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import Recipe from './Recipe';
 import { async } from 'q';
 
 const App = () => {
 
   const API = 'd0dcff82abb54485948d11c436e31347';
+
+  const[recipes, setRecipes] = useState([]);
 
   useEffect(() => {
     getRecipes();
@@ -13,7 +16,8 @@ const App = () => {
   const getRecipes = async () => {
     const foodFetch = await fetch(`https://api.spoonacular.com/recipes/search?apiKey=${API}`);
     const data = await foodFetch.json();
-    console.log(data)
+    setRecipes(data.results);
+    console.log(data.results);
   }
 
   return (
@@ -27,7 +31,9 @@ const App = () => {
         Search recipes...
         </button>
       </form>
-      {/* <h1 onClick={() => setCounter(counter + 1)}>{counter}</h1> */}
+      {recipes.map(recipe => (
+        <Recipe title={recipe.title} servings={recipe.servings} image={recipe.image}/>
+      ))}
     </div>
   )
 }
