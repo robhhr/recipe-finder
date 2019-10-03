@@ -32,7 +32,12 @@ const App = () => {
         </button>
       </form>
       {recipes.map(recipe => (
-        <Recipe title={recipe.title} servings={recipe.servings} image={recipe.image}/>
+        <Recipe
+          title={recipe.title}
+          servings={recipe.servings}
+          image={`https://spoonacular.com/recipeImages/${recipe.id}-312x150.jpg`}
+          time={recipe.readyInMinutes}
+          />
       ))}
     </div>
   )
