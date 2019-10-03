@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import Recipe from './Recipe';
-import { async } from 'q';
 
 const App = () => {
 
   const API = 'd0dcff82abb54485948d11c436e31347';
 
   const[recipes, setRecipes] = useState([]);
-  const [query, queryState] = useState('cheese');
+  const [query, queryState] = useState('');
 
   useEffect(() => {
     getRecipes();
   }, [query]);
 
   const getRecipes = async () => {
-    const foodFetch = await fetch(`https://api.spoonacular.com/recipes/search?query=${query}&number=2&apiKey=${API}`);
+    const foodFetch = await fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${query}&fillIngredients=true&apiKey=${API}`);
     const data = await foodFetch.json();
     setRecipes(data.results);
     console.log(data.results);
@@ -48,9 +47,10 @@ const App = () => {
         <Recipe
           key={recipe.title}
           title={recipe.title}
-          servings={recipe.servings}
+          // servings={recipe.servings}
+          ingredients={recipe.missedIngredients}
           image={`https://spoonacular.com/recipeImages/${recipe.id}-312x150.jpg`}
-          time={recipe.readyInMinutes}
+          // time={recipe.readyInMinutes}
           />
       ))}
     </div>
