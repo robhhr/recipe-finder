@@ -1,26 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+const App = () => {
+
+  const API = 'd0dcff82abb54485948d11c436e31347';
+
+  const request = `https://api.spoonacular.com/recipes/search?apiKey=${API}`;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <form className="search-form">
+        <input className="search-bar" type="text" />
+        <button className="search-button" type="submit">Search Recipe...</button>
+      </form>
     </div>
-  );
+  )
 }
 
 export default App;
