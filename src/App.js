@@ -47,10 +47,8 @@ const App = () => {
         <Recipe
           key={recipe.title}
           title={recipe.title}
-          // servings={recipe.servings}
           ingredients={recipe.missedIngredients}
           image={`https://spoonacular.com/recipeImages/${recipe.id}-312x150.jpg`}
-          // time={recipe.readyInMinutes}
           />
       ))}
     </div>

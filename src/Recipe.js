@@ -7,7 +7,7 @@ const Recipe = ({ title, ingredients, image }) => {
             <img src={image} alt={title} />
             <ul>
             {ingredients.map(ingredient => (
-                <li className="ingredients">{ingredient.name}</li>
+                <li className="ingredients">{ingredient.original}</li>
             ))}
             </ul>
         </div>
