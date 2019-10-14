@@ -28,6 +28,12 @@ body {
   background-position: center;
 }
 
+h1, h2, h3, h4, h5, h6, p, ul {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: darkgray;
+  font-weight: lighter;
+}
+
 img {
   max-width: 100%;
 }
